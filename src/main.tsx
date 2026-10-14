@@ -1,55 +1,10 @@
-import React, { useState } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUpRight, ArrowRight, Phone, Menu, X, MapPin, Clock, House, Layers3, Hammer, BrickWall, Check, Download } from 'lucide-react';
+import App from './App';
 import './style.css';
 
-const services = [
-  { icon: BrickWall, title: 'Maçonnerie & gros œuvre', text: 'Donner des bases solides à vos projets.', items: 'Maçonnerie traditionnelle, agrandissement, surélévation, chapes fluides, dallages en béton et génie civil.' },
-  { icon: House, title: 'Rénovation intérieure', text: 'Repenser les espaces que vous habitez.', items: 'Rénovation complète de bâtiments et de salles de bain, pour faire évoluer votre lieu de vie.' },
-  { icon: Hammer, title: 'Couverture & zinguerie', text: 'Préserver votre bâtiment, du toit aux détails.', items: 'Toitures en tuiles, acier ou bac acier. Réparation, nettoyage, gouttières, zinguerie et fenêtres de toit.' },
-  { icon: Layers3, title: 'Façades & bardage', text: 'Une nouvelle perspective pour vos extérieurs.', items: 'Ravalement de façades et pose de bardage bois, métallique ou isolant.' },
-];
-const steps = [['Échangeons', 'Vous nous présentez votre projet et vos attentes.'], ['Étudions votre projet', 'Les besoins et les contraintes de votre bâtiment sont examinés.'], ['Définissons les travaux', 'Une proposition précise les interventions envisagées.'], ['Passons aux travaux', 'Le chantier prend forme selon les modalités convenues.']];
-function App() {
-  const [menu, setMenu] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [ready, setReady] = useState(false);
-  const [legal, setLegal] = useState(false);
-  function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const next: Record<string,string> = {};
-    if (!String(data.get('name')).trim()) next.name = 'Indiquez votre nom.';
-    const contact = String(data.get('contact')).trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact) && !/^\+?[\d\s().-]{10,20}$/.test(contact)) next.contact = 'Indiquez un e-mail ou un numéro de téléphone valide.';
-    if (!data.get('service')) next.service = 'Sélectionnez le type de travaux.';
-    if (String(data.get('message')).trim().length < 10) next.message = 'Décrivez votre projet en au moins 10 caractères.';
-    setErrors(next); setReady(Object.keys(next).length === 0);
-  }
-  function download() {
-    const form = document.querySelector('form')!;
-    const data = new FormData(form);
-    const text = `Mon projet ProRenoNeuf\n\nNom : ${data.get('name')}\nContact : ${data.get('contact')}\nTravaux : ${data.get('service')}\n\n${data.get('message')}`;
-    const url = URL.createObjectURL(new Blob([text], {type:'text/plain;charset=utf-8'}));
-    const link = document.createElement('a'); link.href = url; link.download = 'mon-projet-prorenoneuf.txt'; link.click(); URL.revokeObjectURL(url);
-  }
-  return <>
-    <a className="skip" href="#main">Aller au contenu</a>
-    <div className="topbar"><span><MapPin size={13}/> Une entreprise à La Rochelle</span><span>Maçonnerie · Rénovation · Couverture</span></div>
-    <header className="header wrap">
-      <a className="brand" href="#" aria-label="ProRenoNeuf, accueil"><span className="brand-icon"><House size={29} strokeWidth={1.5}/></span><span>ProReno<span className="copper">Neuf</span><small>BÂTIR. RÉNOVER. TRANSFORMER.</small></span></a>
-      <button className="menu-button" aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={menu} aria-controls="navigation" onClick={() => setMenu(!menu)}>{menu ? <X/> : <Menu/>}</button>
-      <nav id="navigation" className={menu ? 'nav open' : 'nav'} aria-label="Navigation principale" onClick={() => setMenu(false)}><a href="#expertises">Nos expertises</a><a href="#entreprise">L’entreprise</a><a href="#parcours">Votre projet</a><a className="nav-contact" href="#contact">Parlons de vos travaux <ArrowUpRight size={17}/></a></nav>
-    </header>
-    <main id="main">
-      <section className="hero"><div className="hero-photo" role="img" aria-label="Maison contemporaine avec façade et toiture, photographie d’illustration"/><div className="hero-shade"/><div className="wrap hero-content"><div className="eyebrow light"><span/> CONSTRUCTION & RÉNOVATION À LA ROCHELLE</div><h1>Une nouvelle vie<br/>pour <em>votre habitat.</em></h1><p>De la maçonnerie à la toiture, ProRenoNeuf accompagne la transformation de votre bâtiment.</p><div className="hero-actions"><a className="button copper-bg" href="#contact">Demander un devis <ArrowUpRight size={19}/></a><a className="hero-phone" href="tel:+33687585279"><Phone size={18}/> <span><small>Parlons de votre projet</small>Appeler le 06 87 58 52 79</span></a></div><div className="hero-bottom"><span>CONSTRUIRE SUR DE BONNES BASES.</span><a href="#expertises">Découvrir nos expertises <ArrowRight size={17}/></a></div></div><span className="photo-note">Photographie d’illustration</span></section>
-      <div className="trade-strip wrap"><span>Un projet, plusieurs savoir-faire.</span><div><span>MAÇONNERIE</span><i/> <span>RÉNOVATION</span><i/><span>COUVERTURE</span><i/><span>FAÇADES</span></div></div>
-      <section id="expertises" className="section wrap"><div className="section-heading"><div><div className="eyebrow">01 / NOS EXPERTISES</div><h2>Du gros œuvre<br/>aux derniers détails.</h2></div><p>Construire, rénover, protéger : des compétences complémentaires pour les différentes étapes de votre projet.</p></div><div className="services">{services.map((s,i) => <article className="service" key={s.title}><div className="service-top"><s.icon size={32} strokeWidth={1.3}/><span>0{i+1}</span></div><h3>{s.title}</h3><p className="service-tag">{s.text}</p><p>{s.items}</p><a href="#contact">Parlons de votre projet <ArrowUpRight size={18}/></a></article>)}</div></section>
-      <section id="entreprise" className="about"><div className="wrap about-grid"><figure><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=85" alt="Architecture contemporaine aux lignes épurées" loading="lazy" width="1100" height="900"/><figcaption>Architecture — photographie d’illustration</figcaption><div className="image-label"><House size={25}/><span>Implantés à<br/><strong>La Rochelle</strong></span></div></figure><div className="about-content"><div className="eyebrow">02 / L’ENTREPRISE</div><h2>Faire évoluer votre bâti.<br/><em>Donner forme à vos idées.</em></h2><p>Basée à La Rochelle, ProRenoNeuf intervient dans la construction et la rénovation immobilière, avec des compétences en maçonnerie, couverture et façades.</p><p>Agrandir une maison, rénover une salle de bain ou entretenir une toiture : chaque projet commence par comprendre le bâtiment et ce que vous souhaitez en faire.</p><div className="about-points"><span><Check size={17}/> Des métiers complémentaires</span><span><Check size={17}/> Des travaux adaptés à votre bâtiment</span><span><Check size={17}/> Un échange direct sur votre projet</span></div><a className="text-link" href="#contact">Faisons connaissance <ArrowUpRight size={19}/></a></div></div></section>
-      <section id="parcours" className="section wrap"><div className="section-heading"><div><div className="eyebrow">03 / VOTRE PROJET</div><h2>Tout commence<br/>par une conversation.</h2></div><a className="button outline" href="#contact">Présentez-nous votre projet <ArrowUpRight size={18}/></a></div><div className="steps">{steps.map(([title,text],i) => <article key={title}><span className="step-number">0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-      <section id="contact" className="contact"><div className="wrap contact-grid"><div><div className="eyebrow light">04 / PARLONS DE VOS TRAVAUX</div><h2>Votre prochain chapitre<br/><em>commence ici.</em></h2><p>Une rénovation en tête ? Une toiture à reprendre ?<br/>Contactez-nous pour échanger sur vos besoins.</p><a className="contact-phone" href="tel:+33687585279"><Phone size={22}/>06 87 58 52 79 <ArrowUpRight size={22}/></a><div className="contact-detail"><MapPin size={20}/><div>1 rue Ernest Meissonier<br/>17000 La Rochelle<a href="https://www.google.com/maps/search/?api=1&query=1+rue+Ernest+Meissonier+17000+La+Rochelle" target="_blank" rel="noreferrer">Voir l’itinéraire ↗</a></div></div><div className="contact-detail"><Clock size={20}/><div>Lundi – vendredi <b>08h30 – 18h30</b><br/>Samedi <b>09h00 – 17h00</b><br/>Dimanche fermé</div></div></div><div className="form-card"><h3>Préparons votre projet</h3><p>Rassemblez les informations utiles avant de nous appeler.</p><form onSubmit={submit} noValidate onChange={() => setReady(false)}><label htmlFor="name">Votre nom *</label><input id="name" name="name" autoComplete="name" placeholder="Prénom et nom" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'name-error' : undefined}/>{errors.name && <span id="name-error" className="error">{errors.name}</span>}<label htmlFor="contact-field">Téléphone ou e-mail *</label><input id="contact-field" name="contact" placeholder="Pour vous recontacter" aria-invalid={!!errors.contact} aria-describedby={errors.contact ? 'contact-error' : undefined}/>{errors.contact && <span id="contact-error" className="error">{errors.contact}</span>}<label htmlFor="service">Votre type de travaux *</label><select id="service" name="service" defaultValue="" aria-invalid={!!errors.service} aria-describedby={errors.service ? 'service-error' : undefined}><option value="" disabled>Sélectionnez une prestation</option>{services.map(s => <option key={s.title}>{s.title}</option>)}<option>Plusieurs travaux / autre projet</option></select>{errors.service && <span id="service-error" className="error">{errors.service}</span>}<label htmlFor="message">Quelques mots sur votre projet *</label><textarea id="message" name="message" rows={3} placeholder="Votre bâtiment, vos besoins, vos envies…" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'message-error' : undefined}/>{errors.message && <span id="message-error" className="error">{errors.message}</span>}<p className="form-note">L’envoi en ligne n’est pas encore disponible. Ces informations restent dans votre navigateur et ne sont pas transmises.</p><button className="button copper-bg" type="submit">Préparer ma demande <ArrowRight size={18}/></button><div aria-live="polite">{ready && <div className="form-result"><strong>Votre récapitulatif est prêt.</strong><p>Aucune demande n’a été envoyée. Téléchargez-le pour préparer votre échange, puis appelez-nous.</p><button className="text-link" type="button" onClick={download}><Download size={17}/> Télécharger mon récapitulatif</button><a href="tel:+33687585279">Appeler le 06 87 58 52 79 ↗</a></div>}</div></form></div></div></section>
-    </main>
-    <footer className="wrap"><div className="footer-top"><a className="brand" href="#">ProReno<span className="copper">Neuf</span></a><p>Bâtir aujourd’hui. Rénover pour demain.</p><a href="#main">Retour en haut ↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} ProRenoNeuf</span><div><a href="#expertises">Nos expertises</a><a href="#contact">Contact</a><button onClick={() => setLegal(!legal)} aria-expanded={legal} aria-controls="legal">Informations légales</button></div></div>{legal && <div id="legal" className="legal"><h3>Informations avant publication</h3><p>Les mentions légales et la politique de confidentialité restent à compléter : identité juridique de l’éditeur, directeur de publication, coordonnées de l’hébergeur et modalités de traitement des données si un service d’envoi est ajouté.</p><p>Cette version ne transmet pas le formulaire et n’utilise ni outil de suivi ni carte intégrée. Les photographies d’illustration sont chargées depuis Unsplash.</p></div>}</footer>
-  </>;
-}
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
