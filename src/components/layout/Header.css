@@ -1,8 +1,28 @@
 /* Switch to the existing mobile menu before the additional link crowds the logo. */
+.brand-logo { display:block; width:178px; height:auto; max-height:72px; object-fit:contain; }
+
+.header-sticky {
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:#faf9f6;
+  box-shadow:0 1px 0 #142e3812;
+  transition:transform 240ms ease;
+}
+.header-sticky-hidden { transform:translateY(-100%); }
+.header-sticky:focus-within { transform:translateY(0); }
+@media (prefers-reduced-motion:reduce) {
+  .header-sticky { transition:none; }
+}
+
 @media (min-width:781px) and (max-width:1050px) {
   .header { position:relative; }
   .header .menu-button { display:flex; background:none; border:0; color:var(--navy); padding:10px; }
   .header .nav { display:none; position:absolute; left:0; right:0; top:98px; padding:24px 30px; background:#faf9f6; z-index:20; box-shadow:0 15px 20px #0001; }
   .header .nav.open { display:flex; flex-direction:column; align-items:stretch; gap:23px; }
   .header .nav-contact { justify-content:space-between; }
+}
+
+@media (max-width:780px) {
+  .brand-logo { width:154px; max-height:58px; }
 }
