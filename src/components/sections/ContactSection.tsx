@@ -13,7 +13,9 @@ export function ContactSection() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    if (sending) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const contact = String(data.get('contact')).trim();
     const next: Record<string, string> = {};
     if (!String(data.get('name')).trim()) next.name = 'Indiquez votre nom.';
@@ -27,8 +29,18 @@ export function ContactSection() {
     setSending(true);
     try {
       await addDoc(collection(db, 'contactRequests'), { name: String(data.get('name')).trim(), contact, service: String(data.get('service')).trim(), message: String(data.get('message')).trim(), status: 'new', source: 'website', createdAt: serverTimestamp() });
-      setSaved(true); event.currentTarget.reset();
-    } catch { setSaveError(true); } finally { setSending(false); }
+    } catch {
+      setSaved(false);
+      setSaveError(true);
+      return;
+    } finally {
+      setSending(false);
+    }
+    // React clears event.currentTarget after the synchronous event handler.
+    // Use the captured form, and keep UI reset outside the Firestore error path.
+    setSaveError(false);
+    setSaved(true);
+    form.reset();
   }
 
   function download() {
