@@ -8,6 +8,7 @@ import { ProjectsSection } from './components/sections/ProjectsSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { ProcessSection } from './components/sections/ProcessSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { TestimonialsSection } from './components/sections/TestimonialsSection';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
+        <TestimonialsSection />
         <ProcessSection />
         <ContactSection />
       </main>
