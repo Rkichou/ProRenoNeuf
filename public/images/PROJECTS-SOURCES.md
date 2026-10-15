@@ -2,6 +2,8 @@
 
 ## Nouvelles photos fournies pour la galerie
 
+- `construction.webp` → `projects/construction-maison-parpaings.webp` : photo fournie par l’utilisateur pour les réalisations ; maison en construction avec maçonnerie apparente.
+
 - `Rénovation de façade sous échafaudage.png` → `projects/renovation-facade-pierre.png`.
 - `Patio provençal avec piscine en construction.png` → `projects/terrasse-dallee-piscine.png`.
 - `69c571823100009e673187e5.jpg` → `projects/douche-carrelage-noir.jpg`.

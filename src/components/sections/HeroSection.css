@@ -1,4 +1,14 @@
 .photo-hero {
+  --hero-fade-height: 110px;
+  --hero-fade-mask: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(100% - var(--hero-fade-height)),
+    rgba(0, 0, 0, .9) calc(100% - var(--hero-fade-height) * .75),
+    rgba(0, 0, 0, .5) calc(100% - var(--hero-fade-height) * .5),
+    rgba(0, 0, 0, .1) calc(100% - var(--hero-fade-height) * .25),
+    transparent 100%
+  );
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -23,8 +33,9 @@
   background: linear-gradient(90deg, rgba(12,31,39,.94), rgba(12,31,39,.78) 34%, rgba(12,31,39,.35) 62%, rgba(12,31,39,.06));
 }
 .photo-hero-visual, .photo-hero::before {
-  /* Reveal the page backdrop at the junction with the statistics. */
-  mask-image: linear-gradient(to bottom, #000 calc(100% - 95px), transparent);
+  /* Fade only the image and shading, revealing the shared copper backdrop. */
+  -webkit-mask-image: var(--hero-fade-mask);
+  mask-image: var(--hero-fade-mask);
 }
 .photo-hero-content { padding-top: 108px; padding-bottom: 128px; }
 .photo-hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; line-height: 1.8; margin: 0 0 26px; }
@@ -40,6 +51,7 @@
 .photo-hero-actions a:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
 .photo-hero-caption { font-size: 10px; margin: 24px 0 0; color: #e4e5df; }
 @media (max-width: 780px) {
+  .photo-hero { --hero-fade-height: 80px; }
   .photo-hero-content { padding-top: 75px; padding-bottom: 110px; }
   .photo-hero-visual img { inset: 0; height: 100%; object-position: 68% 50%; transform: none !important; }
   .photo-hero::before { background: linear-gradient(90deg, #0c1f27eb, #0c1f27a6); }

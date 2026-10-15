@@ -9,6 +9,7 @@ export type ProjectSlide = {
 // Photos de projets fournies par l’utilisateur pour la galerie.
 export const projectsIllustrative = false;
 export const projects: ProjectSlide[] = [
+  { id: 'construction-maison', image: '/images/projects/construction-maison-parpaings.webp', alt: 'Maison en construction avec murs en parpaings apparents, ouvertures et échafaudage', title: 'Maçonnerie & gros œuvre', caption: 'Une maison en cours de construction, avec sa maçonnerie apparente et ses ouvertures.' },
   { id: 'facade-pierre', image: '/images/projects/renovation-facade-pierre.png', alt: 'Façade en pierre avec encadrements de fenêtres enduits, derrière un échafaudage', title: 'Rénovation de façade', caption: 'Pierre apparente et encadrements de fenêtres : une façade en cours de rénovation.' },
   { id: 'terrasse-piscine', image: '/images/projects/terrasse-dallee-piscine.png', alt: 'Terrasse en dalles claires autour d’un bassin de piscine devant une maison', title: 'Aménagement de terrasse', caption: 'Un dallage clair autour de la piscine et au pied de la maison.' },
   { id: 'douche-carrelage', image: '/images/projects/douche-carrelage-noir.jpg', alt: 'Espace douche avec carrelage mural noir, joints clairs et colonne de douche chromée', title: 'Aménagement de douche', caption: 'Carrelage noir et joints contrastés pour cet espace douche.' },

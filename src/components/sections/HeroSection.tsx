@@ -58,7 +58,7 @@ export function HeroSection() {
   return (
     <section className="photo-hero" ref={sectionRef} aria-labelledby="hero-title">
       <div className="photo-hero-visual" aria-hidden="true">
-        <img ref={imageRef} src="/images/hero-maison.jpg" alt="" width="1672" height="941"
+        <img ref={imageRef} src="/images/hero-couvreur.jpg" alt="" width="1672" height="941"
           fetchPriority="high" loading="eager" decoding="async"
           onError={event => {
             if (event.currentTarget.dataset.fallback) return;
@@ -72,7 +72,6 @@ export function HeroSection() {
         <p className="photo-hero-description">À La Rochelle, ProRenoNeuf intervient pour vos travaux de maçonnerie, de rénovation et de couverture. Parlons de votre projet.</p>
         <div className="photo-hero-actions">
           <a className="button photo-hero-primary" href="#contact">Demander un devis <ArrowUpRight size={18} aria-hidden="true" /></a>
-          <a className="button photo-hero-phone" href="tel:+33687585279"><Phone size={16} aria-hidden="true" />Appeler le 06 87 58 52 79</a>
         </div>
       </div>
     </section>

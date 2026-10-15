@@ -6,6 +6,27 @@
   background: #eee9e1;
   border-radius: 4px;
 }
+
+.services-section .service {
+  transition: transform 250ms ease;
+}
+.services-section .service-pending {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.services-section .service-revealed {
+  animation: service-enter 600ms cubic-bezier(.2,.7,.2,1) var(--service-delay, 0ms) backwards;
+}
+@keyframes service-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.services-section [data-service-reveal]:focus-within {
+  opacity: 1;
+  animation: none;
+}
+.services-section .service:focus-within { transform: translateY(-4px); }
+.services-section .service:focus-within .service-photo img { transform: scale(1.04); }
 .service-photo img {
   display: block;
   width: 100%;
@@ -20,8 +41,18 @@
   color: #626f71;
 }
 @media (hover: hover) and (pointer: fine) {
+  .services-section .service:not(.service-pending):hover { transform: translateY(-4px); }
   .service:hover .service-photo img { transform: scale(1.04); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .services-section [data-service-reveal],
+  .services-section .service:not(.service-pending):hover,
+  .services-section .service:focus-within {
+    opacity: 1;
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+  .services-section .service:focus-within .service-photo img { transform: none; }
   .service .service-photo img { transition: none; transform: none; }
 }
