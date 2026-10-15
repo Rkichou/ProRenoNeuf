@@ -18,6 +18,7 @@
 #main > .about-section,
 #main > .section,
 #main > .location-section,
+#main > .testimonials-section,
 #main > .contact {
   background: transparent;
 }
