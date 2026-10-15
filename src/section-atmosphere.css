@@ -13,7 +13,6 @@
 }
 
 /* Transparent surfaces reveal the same canvas regardless of section height. */
-#main > .arc-hero,
 #main > .stats-section,
 #main > .about-section,
 #main > .section,
