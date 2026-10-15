@@ -1,0 +1,41 @@
+/* A single repeating backdrop keeps the glow continuous across section edges. */
+#root {
+  background-color: #faf9f6;
+  background-image: radial-gradient(
+    ellipse 75% 50% at 50% 50%,
+    rgba(135, 69, 38, .17) 0%,
+    rgba(135, 69, 38, .09) 34%,
+    rgba(135, 69, 38, .025) 66%,
+    rgba(135, 69, 38, 0) 100%
+  );
+  background-size: 100% 720px;
+  background-repeat: repeat-y;
+}
+
+/* Transparent surfaces reveal the same canvas regardless of section height. */
+#main > .arc-hero,
+#main > .stats-section,
+#main > .about-section,
+#main > .section,
+#main > .contact {
+  background: transparent;
+}
+
+#main > .contact { color: var(--navy); }
+.contact .eyebrow.light { color: #874526; }
+.contact h2 em { color: #874526; }
+.contact .contact-grid > div > p,
+.contact .contact-detail { color: #455a62; }
+.contact .contact-phone { border-color: #142e3826; }
+.contact .contact-phone svg:last-child,
+.contact .contact-detail svg,
+.contact .contact-detail a { color: #874526; }
+.contact .form-card {
+  background: rgba(250, 249, 246, .92);
+  border: 1px solid #87452626;
+  box-shadow: 0 12px 40px #87452608;
+}
+
+@media (max-width: 780px) {
+  #root { background-size: 100% 620px; }
+}

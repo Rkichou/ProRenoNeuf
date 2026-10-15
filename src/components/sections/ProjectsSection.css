@@ -1,0 +1,8 @@
+.projects-section{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}
+.projects-copy{max-width:410px}
+.projects-copy>p{font-size:14px;line-height:1.85;color:#58686c;margin:22px 0}
+.projects-copy .projects-notice{font-size:12px;border-left:2px solid #87452666;padding-left:15px}
+.projects-copy .button{border-radius:25px}
+.projects-copy .projects-help{font-size:11px;margin-top:24px}
+@media(max-width:1050px){.projects-section{gap:35px}}
+@media(max-width:780px){.projects-section{grid-template-columns:1fr;gap:16px}.projects-copy{max-width:510px}}
