@@ -22,7 +22,6 @@ export default function App() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
-        <ProcessSection />
         <TestimonialsSection />
         <LocationSection />
         <ContactSection />
