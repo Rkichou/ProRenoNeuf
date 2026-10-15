@@ -9,6 +9,7 @@ import { AboutSection } from './components/sections/AboutSection';
 import { ProcessSection } from './components/sections/ProcessSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { TestimonialsSection } from './components/sections/TestimonialsSection';
+import { LocationSection } from './components/sections/LocationSection';
 
 export default function App() {
   return (
@@ -21,8 +22,9 @@ export default function App() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
-        <TestimonialsSection />
         <ProcessSection />
+        <TestimonialsSection />
+        <LocationSection />
         <ContactSection />
       </main>
       <Footer />

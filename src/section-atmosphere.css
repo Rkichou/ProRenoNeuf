@@ -17,6 +17,7 @@
 #main > .stats-section,
 #main > .about-section,
 #main > .section,
+#main > .location-section,
 #main > .contact {
   background: transparent;
 }
