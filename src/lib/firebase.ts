@@ -18,3 +18,5 @@ export function getTestimonialsDb() {
   app = app ?? (getApps()[0] ?? initializeApp(config));
   return getFirestore(app);
 }
+
+export const getFirestoreDb = getTestimonialsDb;
