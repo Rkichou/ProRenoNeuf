@@ -41,7 +41,6 @@ export function AboutSection() {
           <h2 id="about-title">Votre bâtiment,<br/><em>de nouvelles possibilités.</em></h2>
           <p>Basée à La Rochelle, ProRenoNeuf réunit des compétences en maçonnerie, rénovation et couverture. Agrandir, transformer ou entretenir : parlons des travaux qui donneront une nouvelle vie à votre bâtiment.</p>
           <div className="about-actions">
-            <a className="button copper-bg" href="#contact">Parlons de votre projet <ArrowUpRight size={17} aria-hidden="true"/></a>
             <a className="text-link" href="#expertises">Découvrir nos expertises <ArrowUpRight size={16} aria-hidden="true"/></a>
           </div>
         </div>
@@ -52,7 +51,6 @@ export function AboutSection() {
           <div className="about-photo-detail">
             <img src="/images/hero-facade.jpg" alt="Détail d’un escalier intérieur et de son parement mural" width="480" height="600" loading="lazy" decoding="async"/>
           </div>
-          <figcaption>Photographies d’illustration</figcaption>
         </figure>
       </div>
     </section>

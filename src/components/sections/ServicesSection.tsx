@@ -34,7 +34,6 @@ export function ServicesSection() {
             <h3>{service.title}</h3>
             <p className="service-tag">{service.text}</p>
             <p>{service.items}</p>
-            <a href="#contact">Parlons de votre projet <ArrowUpRight size={18}/></a>
           </article>
         ))}
       </div>

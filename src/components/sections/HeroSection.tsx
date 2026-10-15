@@ -74,7 +74,6 @@ export function HeroSection() {
           <a className="button photo-hero-primary" href="#contact">Demander un devis <ArrowUpRight size={18} aria-hidden="true" /></a>
           <a className="button photo-hero-phone" href="tel:+33687585279"><Phone size={16} aria-hidden="true" />Appeler le 06 87 58 52 79</a>
         </div>
-        <p className="photo-hero-caption">Photographie d’illustration</p>
       </div>
     </section>
   );
