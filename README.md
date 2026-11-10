@@ -23,3 +23,6 @@ Navigation par ancres, menu mobile, liens d’appel et itinéraire. Le formulair
 - Remplacer si souhaité les photos d’illustration par des photos de chantiers autorisées. Les images actuelles sont chargées depuis Unsplash ; polices Google Fonts externes. Envisager l’hébergement local des ressources avant publication.
 
 Sources consultées le 14 octobre 2026 : https://www.pagesjaunes.fr/pros/64545245 et https://www.prorenoneuf.fr/. Aucun avis, chiffre commercial ou certification repris.
+## Administration
+
+L’espace `/admin` et sa configuration Firebase sont documentés dans [docs/ADMIN.md](docs/ADMIN.md). Les règles et rôles restent à configurer manuellement avant utilisation en production.

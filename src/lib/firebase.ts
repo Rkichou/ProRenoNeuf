@@ -13,10 +13,15 @@ const config = {
 const hasConfig = Object.values(config).every(Boolean);
 let app: FirebaseApp | undefined;
 
-export function getTestimonialsDb() {
+export function getFirebaseApp() {
   if (!hasConfig) return null;
   app = app ?? (getApps()[0] ?? initializeApp(config));
-  return getFirestore(app);
+  return app;
 }
 
-export const getFirestoreDb = getTestimonialsDb;
+export function getFirestoreDb() {
+  const firebaseApp = getFirebaseApp();
+  return firebaseApp ? getFirestore(firebaseApp) : null;
+}
+
+export const getTestimonialsDb = getFirestoreDb;

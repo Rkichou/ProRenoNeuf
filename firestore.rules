@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /testimonials/{testimonialId} {
+      allow read: if resource.data.published == true;
+      allow write: if false;
+    }
+    match /contactRequests/{requestId} {
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow create: if validRequest();
+      allow update, delete: if false;
+
+      function validRequest() {
+        let d = request.resource.data;
+        return d.keys().hasAll(['name', 'contact', 'service', 'message', 'status', 'source', 'createdAt'])
+          && d.keys().hasOnly(['name', 'contact', 'service', 'message', 'status', 'source', 'createdAt'])
+          && d.name is string && d.name.size() >= 2 && d.name.size() <= 100
+          && d.contact is string && d.contact.size() >= 6 && d.contact.size() <= 150
+          && d['service'] is string && d['service'].size() >= 2 && d['service'].size() <= 120
+          && d.message is string && d.message.size() >= 10 && d.message.size() <= 3000
+          && d.status == 'new' && d.source == 'website'
+          && d.createdAt == request.time;
+      }
+    }
+  }
+}
