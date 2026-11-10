@@ -4,7 +4,7 @@ export const statsConfig = {
   durationMs: 1500,
   items: [
     { id: 'satisfaction', value: 98, prefix: '', suffix: ' %', label: 'Satisfaction client', accessibleValue: '98 pour cent' },
-    { id: 'team', value: 200, prefix: '+', suffix: '', label: 'Collaborateurs', accessibleValue: 'Plus de 200' },
-    { id: 'projects', value: 2351, prefix: '+', suffix: '', label: 'Chantiers réalisés', accessibleValue: 'Plus de 2 351' },
+    { id: 'team', value: 50, prefix: '+', suffix: '', label: 'Collaborateurs', accessibleValue: 'Plus de 50' },
+    { id: 'projects', value: 500, prefix: '+', suffix: '', label: 'Chantiers réalisés', accessibleValue: 'Plus de 500' },
   ],
 };
