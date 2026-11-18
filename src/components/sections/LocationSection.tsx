@@ -9,7 +9,7 @@ export function LocationSection() {
           <div className="eyebrow">NOUS TROUVER</div>
           <h2 id="location-title">Proches de vos<br /><em>projets.</em></h2>
           <p>ProRenoNeuf vous accueille à La Rochelle pour parler de vos travaux de maçonnerie, rénovation et couverture.</p>
-          <div className="location-address"><MapPin size={20} aria-hidden="true" /><address>1 rue Ernest Meissonnier<br />17000 La Rochelle</address></div>
+          <div className="location-address"><MapPin size={20} aria-hidden="true" /><address>2 avenue henri hautier<br />17000 La Rochelle</address></div>
           <a className="button outline" href="https://www.google.com/maps/search/?api=1&query=1+rue+Ernest+Meissonnier+17000+La+Rochelle" target="_blank" rel="noreferrer">Ouvrir dans Google Maps <ArrowUpRight size={17} /></a>
         </div>
         <div className="location-map-wrap">
